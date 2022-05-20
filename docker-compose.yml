@@ -1,0 +1,35 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres:14.3
+    restart: on-failure
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres/migrations/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./postgres/postgresql.conf:/etc/postgresql.conf
+    command:
+      - postgres
+      - -c
+      - config_file=/etc/postgresql.conf
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+  slow-query-detector:
+    build: .
+    container_name: slow-query-detector
+    restart: on-failure
+    environment:
+      PORT: 8080
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
