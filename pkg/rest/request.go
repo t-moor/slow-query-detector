@@ -8,9 +8,9 @@ type FindQueriesRequest struct {
 }
 
 type QueryInfo struct {
-	QueryID       int64   `json:"query_id"`
-	Query         string  `json:"query"`
-	ExecutionTime float64 `json:"execution_time"`
+	QueryID          int64   `json:"query_id"`
+	Query            string  `json:"query"`
+	MaxExecutionTime float64 `json:"execution_time"`
 }
 
 type FindQueriesResponse []QueryInfo

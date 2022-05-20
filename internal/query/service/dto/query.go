@@ -10,9 +10,9 @@ type FindQueriesInput struct {
 
 // QueryInfo represents data for particular query
 type QueryInfo struct {
-	QueryID       int64
-	Query         string
-	ExecutionTime float64
+	QueryID          int64
+	Query            string
+	MaxExecutionTime float64
 }
 
 // FindQueriesOutput represents output

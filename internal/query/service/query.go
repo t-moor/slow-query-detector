@@ -38,9 +38,9 @@ func (s *QueryAnalytics) FindQueries(ctx context.Context, input dto.FindQueriesI
 	output := make(dto.FindQueriesOutput, 0, len(results))
 	for _, result := range results {
 		output = append(output, &dto.QueryInfo{
-			QueryID:       result.QueryID,
-			Query:         result.Query,
-			ExecutionTime: result.ExecutionTime,
+			QueryID:          result.QueryID,
+			Query:            result.Query,
+			MaxExecutionTime: result.MaxExecutionTime,
 		})
 	}
 

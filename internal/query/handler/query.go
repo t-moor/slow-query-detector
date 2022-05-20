@@ -96,9 +96,9 @@ func (h *QueryAnalytics) FindQueries(ctx *fiber.Ctx) error {
 	resp := make(rest.FindQueriesResponse, 0, len(output))
 	for _, row := range output {
 		resp = append(resp, rest.QueryInfo{
-			QueryID:       row.QueryID,
-			Query:         row.Query,
-			ExecutionTime: row.ExecutionTime,
+			QueryID:          row.QueryID,
+			Query:            row.Query,
+			MaxExecutionTime: row.MaxExecutionTime,
 		})
 	}
 

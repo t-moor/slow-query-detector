@@ -8,9 +8,9 @@ type FindQueriesCriteria struct {
 }
 
 type FindQueriesResultRow struct {
-	QueryID       int64   `gorm:"column:queryid"`
-	Query         string  `gorm:"column:query"`
-	ExecutionTime float64 `gorm:"column:total_exec_time"`
+	QueryID          int64   `gorm:"column:queryid"`
+	Query            string  `gorm:"column:query"`
+	MaxExecutionTime float64 `gorm:"column:max_exec_time"`
 }
 
 func (g FindQueriesResultRow) TableName() string {
