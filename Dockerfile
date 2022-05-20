@@ -13,6 +13,7 @@ RUN go mod download
 
 COPY . .
 
+RUN go generate ./...
 RUN go build -o /slow-query-detector /app/cmd/main.go
 
 FROM alpine:latest
