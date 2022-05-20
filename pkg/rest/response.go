@@ -2,14 +2,20 @@ package rest
 
 import "github.com/go-playground/validator/v10"
 
-// BadRequestResponse represents bad request body.
+type QueryInfo struct {
+	QueryID          int64   `json:"query_id"`
+	Query            string  `json:"query"`
+	MaxExecutionTime float64 `json:"execution_time"`
+}
+
+type FindQueriesResponse []QueryInfo
+
 type BadRequestResponse struct {
 	Msg          string                 `json:"msg"`
 	Error        string                 `json:"error,omitempty"`
 	FieldsErrors map[string]interface{} `json:"fields,omitempty"`
 }
 
-// NewBadRequestResponse constructor for BadRequestResponse
 func NewBadRequestResponse(msg string, err error) BadRequestResponse {
 	resp := BadRequestResponse{
 		Msg: msg,
@@ -29,13 +35,11 @@ func NewBadRequestResponse(msg string, err error) BadRequestResponse {
 	return resp
 }
 
-// InternalServerErrorResponse represents internal server body
 type InternalServerErrorResponse struct {
 	Msg   string `json:"msg"`
 	Error string `json:"error"`
 }
 
-// NewInternalServerErrorResponse constructor for InternalServerErrorResponse.
 func NewInternalServerErrorResponse(msg string, error error) InternalServerErrorResponse {
 	return InternalServerErrorResponse{Msg: msg, Error: error.Error()}
 }
